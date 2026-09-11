@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 
 import { profileHref, routeHref, useStand } from '../composables/useStand'
+import { useStandProfile } from '../composables/useStandProfile'
 import { formatDuration, useStandRun } from '../composables/useStandRun'
 import { countries } from '../config/countries'
 
@@ -18,6 +19,7 @@ import { countries } from '../config/countries'
  */
 const { t, country, user, locale, isCountryLocked } = useStand()
 const { finishedRun, resetRun, sendState, retrySend, runAsText } = useStandRun()
+const { isProfileFilled } = useStandProfile()
 
 const text = computed(() => ({
   title: t('thanks.title'),
@@ -102,12 +104,24 @@ async function copyRun() {
 
 const copyLabel = computed(() => (isCopied.value ? text.value.copied : text.value.copy))
 
-// Если стенд открыли ссылкой рынка, «пройти ещё раз» возвращает к профилю
-// той же страны, а не к списку стран: второй прогон должен начаться так же,
-// как первый.
-const indexHref = computed(() =>
-  isCountryLocked.value ? profileHref(country.value) : routeHref(),
-)
+/**
+ * Куда ведёт «Пройти ещё раз».
+ *
+ * Один респондент проходит подряд два-три варианта, и профиль он вводит
+ * один раз: он уже сохранён, а повторный ввод тех же четырёх полей перед
+ * каждым прогоном — минута впустую и раздражение на ровном месте. Поэтому
+ * с заполненным профилем возвращаемся сразу к выбору типа пользователя.
+ *
+ * Профиль ещё не заполняли — начинаем с него. Страна не зафиксирована
+ * ссылкой рынка (это мы сами) — возвращаемся к списку стран.
+ */
+const indexHref = computed(() => {
+  if (!isCountryLocked.value) {
+    return routeHref()
+  }
+
+  return isProfileFilled.value ? routeHref(country.value) : profileHref(country.value)
+})
 const localeCode = computed(() => locale.value)
 
 function again() {
