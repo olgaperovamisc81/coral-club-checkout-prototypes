@@ -967,7 +967,9 @@ function onOverlayKeydown(event: KeyboardEvent) {
     display: flex;
     gap: var(--st-global-distance-space-inset-sm);
 
-    padding: var(--st-global-distance-space-inset-md) var(--st-global-distance-space-inset-2xl) 0;
+    // Только верхний отступ: боковые уже даёт __body — свой лишний
+    // левый/правый задваивал отступ и сдвигал кнопки правее свичера в хедере.
+    padding-top: var(--st-global-distance-space-inset-md);
   }
 
   // Когда карта показана, переключатель должен лежать на ней, а не над ней:
