@@ -950,7 +950,12 @@ function onOverlayKeydown(event: KeyboardEvent) {
   &__pickup-map-canvas {
     margin: 0 calc(var(--st-global-distance-space-inset-2xl) * -1) var(--st-global-distance-space-inset-xl);
 
+    // Составной селектор — не только для border/radius, но и чтобы
+    // specificity надёжно перебивала .cc3-map { width: 100% }: сама карта
+    // задаёт фиксированную ширину, отрицательные поля её лишь сдвигают,
+    // а не растягивают, и без перебитого width справа остаётся щель.
     &.cc3-map {
+      width: calc(100% + var(--st-global-distance-space-inset-2xl) * 2);
       border: none;
       border-radius: 0;
     }
