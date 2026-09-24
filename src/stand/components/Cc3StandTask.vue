@@ -22,19 +22,13 @@ import { useStandTask } from '../composables/useStandTask'
 const { country, user } = useStand()
 const { isProfileFilled } = useStandProfile()
 const { startSession } = useStandSession()
-const { taskText, taskHint, nextLabel, nextHref } = useStandTask()
+const { taskTitle, taskText, taskHint, nextLabel, nextHref } = useStandTask()
 
 // Сессия заводится при первом открытии экрана: она задаёт порядок концептов
 // и живёт до конца теста. Повторный заход сюда порядок не перетасовывает.
 onMounted(() => {
   startSession(country.value, user.value)
 })
-
-const { t } = useStand()
-
-const text = computed(() => ({
-  title: t('task.title'),
-}))
 
 const isReady = computed(() => isProfileFilled.value)
 
@@ -47,9 +41,9 @@ function onProfileSubmit() {
   <div class="cc3-stand-task">
     <div class="cc3-stand-task__card">
       <template v-if="isReady">
-        <h1 class="cc3-stand-task__title">{{ text.title }}</h1>
+        <h1 class="cc3-stand-task__title">{{ taskTitle }}</h1>
         <p class="cc3-stand-task__text">{{ taskText }}</p>
-        <p class="cc3-stand-task__hint">{{ taskHint }}</p>
+        <p v-if="taskHint" class="cc3-stand-task__hint">{{ taskHint }}</p>
 
         <a :href="nextHref" class="cc3-stand-task__button">{{ nextLabel }}</a>
       </template>

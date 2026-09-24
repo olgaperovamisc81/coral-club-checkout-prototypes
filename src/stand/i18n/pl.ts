@@ -281,7 +281,7 @@ export default {
   'common.minutes': 'min',
   'common.seconds': 's',
   'thanks.title': 'Dziękujemy! Zamówienie złożone',
-  'thanks.subtitle': 'Potwierdzenie wysłaliśmy na Twój e-mail. To zamówienie testowe — nie trzeba nic płacić.',
+  'thanks.subtitle': 'To zamówienie testowe — nie trzeba nic płacić.',
   'thanks.order': 'Numer zamówienia {number}',
   'thanks.details': 'Szczegóły przejścia',
   'thanks.again': 'Przejdź jeszcze raz',
@@ -301,9 +301,11 @@ export default {
 
   // Сценарий теста: задание и переходы между вариантами
   'task.title': 'Twoje zadanie',
+  'task.title.next': 'Twoje zadanie numer {number}',
   'task.new': 'Składasz tu zamówienie po raz pierwszy. Zrób tak, aby kurier przywiózł je do Ciebie do domu.',
   'task.saved': 'Zamawiałeś tu już wcześniej. Tym razem chcesz odebrać zamówienie osobiście — wybierz dowolny punkt odbioru.',
-  'task.hint': 'W zamówieniu możesz podać dowolny istniejący adres — nie musi to być Twój własny.',
+  'task.hint.new': 'W zamówieniu możesz podać dowolny istniejący adres — nie musi to być Twój własny.',
+  'task.hint.saved': 'Adresy i dane na tym koncie są testowe — możesz użyć dowolnych.',
   'task.start': 'Rozpocznij zadanie',
   'task.another': 'Wypróbuj inną wersję',
   'task.done': 'To wszystko. Dziękujemy za udział — bardzo nam pomogłeś.',

@@ -281,7 +281,7 @@ export default {
   'common.minutes': 'min',
   'common.seconds': 's',
   'thanks.title': 'Děkujeme! Objednávka je odeslána',
-  'thanks.subtitle': 'Potvrzení jsme poslali na váš e-mail. Jde o cvičnou objednávku — nic se neplatí.',
+  'thanks.subtitle': 'Jde o cvičnou objednávku — nic se neplatí.',
   'thanks.order': 'Číslo objednávky {number}',
   'thanks.details': 'Detaily průchodu',
   'thanks.again': 'Projít znovu',
@@ -301,9 +301,11 @@ export default {
 
   // Сценарий теста: задание и переходы между вариантами
   'task.title': 'Váš úkol',
+  'task.title.next': 'Váš úkol číslo {number}',
   'task.new': 'Objednáváte zde poprvé. Zařiďte, aby vám objednávku přivezl kurýr domů.',
   'task.saved': 'Už jste tu dříve objednávali. Tentokrát si chcete objednávku vyzvednout sami — vyberte libovolné výdejní místo.',
-  'task.hint': 'V objednávce můžete uvést libovolnou existující adresu — nemusí být vaše vlastní.',
+  'task.hint.new': 'V objednávce můžete uvést libovolnou existující adresu — nemusí být vaše vlastní.',
+  'task.hint.saved': 'Adresy a údaje v tomto účtu jsou testovací — použijte libovolné.',
   'task.start': 'Začít úkol',
   'task.another': 'Vyzkoušet jinou verzi',
   'task.done': 'To je vše. Děkujeme za účast — moc jste nám pomohli.',

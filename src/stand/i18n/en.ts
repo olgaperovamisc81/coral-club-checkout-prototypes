@@ -281,7 +281,7 @@ export default {
   'common.minutes': 'min',
   'common.seconds': 'sec',
   'thanks.title': 'Thank you! Your order is placed',
-  'thanks.subtitle': 'We have sent a confirmation to your email. This is a practice order — nothing to pay.',
+  'thanks.subtitle': 'This is a practice order — nothing to pay.',
   'thanks.order': 'Order number {number}',
   'thanks.details': 'Session details',
   'thanks.again': 'Run it again',
@@ -301,9 +301,11 @@ export default {
 
   // Сценарий теста: задание и переходы между вариантами
   'task.title': 'Your task',
+  'task.title.next': 'Your task number {number}',
   'task.new': 'You are placing an order here for the first time. Have it delivered by courier to your home.',
   'task.saved': 'You have ordered here before. This time you want to pick the order up yourself — choose any available pickup point.',
-  'task.hint': 'You can use any real address for the order — it does not have to be your own.',
+  'task.hint.new': 'You can use any real address for the order — it does not have to be your own.',
+  'task.hint.saved': 'The addresses and details in this account are test data — use any of them.',
   'task.start': 'Start the task',
   'task.another': 'Try another version',
   'task.done': 'That is all. Thank you for taking the test — you helped a lot.',
