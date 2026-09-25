@@ -30,7 +30,7 @@ export function useStandTask() {
   /** Все запланированные прогоны пройдены — тест закончен. */
   const isSessionDone = computed(() => isSessionMode.value && !next.value)
 
-  const taskText = computed(() => t(`task.${user.value}`))
+  const taskText = computed(() => t(`task.${user.value}`, { city: t('task.city') }))
 
   /**
    * Заголовок задания. Со второго прогона он с номером: задание то же

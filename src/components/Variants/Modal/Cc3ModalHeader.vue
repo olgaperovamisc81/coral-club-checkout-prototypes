@@ -1,16 +1,25 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import coralclubLogo from '@/assets/modal/coralclub-logo.svg'
+import flagCz from '@/assets/modal/flag-cz.svg'
+import flagDe from '@/assets/modal/flag-de.svg'
+import flagKz from '@/assets/modal/flag-kz.svg'
+import flagPl from '@/assets/modal/flag-pl.svg'
 import flagRu from '@/assets/modal/flag-ru.svg'
+import flagUs from '@/assets/modal/flag-us.svg'
 import userPhoto from '@/assets/modal/user-photo.png'
 import Cc3Icon from '@/components/Icon/Cc3Icon.vue'
 import { useStand } from '@/stand/composables/useStand'
 
-const { t } = useStand()
+const { t, country } = useStand()
+
+const flags = { ru: flagRu, kz: flagKz, de: flagDe, pl: flagPl, cz: flagCz, us: flagUs }
 
 const text = computed(() => ({
   menu: t('common.menu'),
 }))
+
+const flagSrc = computed(() => flags[country.value])
 
 
 defineProps<{ cartCount: number }>()
@@ -28,7 +37,7 @@ defineProps<{ cartCount: number }>()
 
     <div class="cc3-modal-header__right">
       <span class="cc3-modal-header__region">
-        <img :src="flagRu" alt="" class="cc3-modal-header__flag" />
+        <img :src="flagSrc" alt="" class="cc3-modal-header__flag" />
       </span>
 
       <span class="cc3-modal-header__avatar">
