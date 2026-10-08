@@ -312,7 +312,7 @@ export const addressBook: Record<CountryCode, StandAddress[]> = {
       email: 'qa.auto.checkout+cz@example.com',
       city: 'Praha',
       addressLine: 'Vinohradská 112, 130 00 Praha 3',
-      address: fields('Vinohradská 112', 'byt 9', '130 00', 'Praha'),
+      address: fields('Vinohradská 112', 'byt 9', '130 00', 'Praha 3'),
       price: 0,
     },
     {
@@ -324,7 +324,7 @@ export const addressBook: Record<CountryCode, StandAddress[]> = {
       email: 'qa.auto.checkout+cz@example.com',
       city: 'Praha',
       addressLine: 'Korunní 58, 120 00 Praha 2',
-      address: fields('Korunní 58', '', '120 00', 'Praha'),
+      address: fields('Korunní 58', '', '120 00', 'Praha 2'),
       price: 0,
     },
     {
@@ -336,7 +336,7 @@ export const addressBook: Record<CountryCode, StandAddress[]> = {
       email: 'qa.auto.checkout+cz@example.com',
       city: 'Praha',
       addressLine: 'Sokolovská 200, 190 00 Praha 9',
-      address: fields('Sokolovská 200', 'byt 4', '190 00', 'Praha'),
+      address: fields('Sokolovská 200', 'byt 4', '190 00', 'Praha 9'),
       price: 0,
     },
     {
@@ -348,7 +348,7 @@ export const addressBook: Record<CountryCode, StandAddress[]> = {
       email: 'qa.auto.checkout+cz@example.com',
       city: 'Praha',
       addressLine: 'Karlovo náměstí 10, 120 00 Praha 2',
-      address: fields('Karlovo náměstí 10', 'byt 6', '120 00', 'Praha'),
+      address: fields('Karlovo náměstí 10', 'byt 6', '120 00', 'Praha 2'),
       price: 0,
     },
   ],

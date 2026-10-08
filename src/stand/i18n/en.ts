@@ -113,7 +113,9 @@ export default {
   'address.entrance': 'Entrance',
   'address.intercom': 'Intercom',
   'address.postal': 'Postcode',
-  'address.part.apartment': 'apt. {value}',
+  // Одобренное сокращение USPS — APT; «apt.» с точкой в американском адресе
+  // не пишут (Publication 28, Appendix C2).
+  'address.part.apartment': 'Apt {value}',
   'address.part.entrance': 'entrance {value}',
   'address.part.intercom': 'intercom {value}',
   'address.part.floor': 'floor {value}',

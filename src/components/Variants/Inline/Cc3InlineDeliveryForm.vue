@@ -128,7 +128,7 @@ const isDeleteConfirmOpen = ref(false)
 // Строка карточки собирается из полей формы по местному порядку —
 // см. composeAddressLine. Одна улица без индекса и города читается как
 // недозаполненный адрес.
-const addressLine = computed(() => composeAddressLine(country.value, values.value))
+const addressLine = computed(() => composeAddressLine(country.value, values.value, t))
 
 const confirmedProfile = computed<DeliveryProfile>(() => {
   return {

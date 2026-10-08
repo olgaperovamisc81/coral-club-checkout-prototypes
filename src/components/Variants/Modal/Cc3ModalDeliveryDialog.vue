@@ -435,7 +435,7 @@ const confirmedProfile = computed<DeliveryProfile>(() => {
       // форма заполняется, когда адрес открывают на правку.
       fields: values.value,
       name: recipientDisplayName.value,
-      addressLine: composeAddressLine(country.value, values.value),
+      addressLine: composeAddressLine(country.value, values.value, t),
       priceLabel: variant?.title ?? '',
       phone: values.value.recipientPhone ?? '',
       email: values.value.recipientEmail ?? '',

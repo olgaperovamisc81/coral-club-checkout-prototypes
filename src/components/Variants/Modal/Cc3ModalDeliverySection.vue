@@ -4,7 +4,11 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import Cc3Icon from '@/components/Icon/Cc3Icon.vue'
 import { useAddressGuard } from '@/composables/useAddressGuard'
 import { useCheckout } from '@/composables/useCheckout'
-import { composeAddressExtras } from '@/stand/config/addressLine'
+import {
+  composeAddressExtras,
+  joinAddressCard,
+  selectedAddressCard,
+} from '@/stand/config/addressLine'
 import { useStand } from '@/stand/composables/useStand'
 
 import Cc3ModalAddressBook from './Cc3ModalAddressBook.vue'
@@ -38,7 +42,14 @@ function toProfiles(): DeliveryProfile[] {
       entry.method === 'courier' ? t('concept.delivery.method.label') : entry.methodLabel,
     fields: entry.fields,
     name: entry.fullName,
-    addressLine: entry.addressLine,
+    // В книге адрес стоит одной строкой — список выбирают, а не читают как
+    // конверт. Но квартира в нём должна быть: в США и Европе она часть
+    // строки доставки, и книга собирает её из полей, чтобы не расходиться
+    // с карточкой в чекауте. Прод-версия берёт ту же книгу и остаётся на
+    // своей строке — контрольную версию правка не трогает.
+    addressLine: joinAddressCard(
+      selectedAddressCard(country.value, entry.fields, entry.addressLine, t),
+    ),
     priceLabel: `${t('delivery.eta')}, ${
       entry.price > 0 ? formatMoneyRounded(entry.price) : t('delivery.free')
     }`,
@@ -119,13 +130,25 @@ watch(
 )
 
 /**
- * Вторая и третья строки карточки, как в карточке Озона: сначала уточнения
- * адреса (квартира, подъезд, домофон, этаж), потом получатель с телефоном.
- * До этого в чекауте стояла одна улица, и всё, что человек ввёл ниже по
- * форме, на экран не возвращалось.
+ * Адрес карточки: строка доставки и под ней город с индексом. Где адрес
+ * пишется одной строкой (СНГ), вторая пустая и не рисуется.
+ */
+const addressCard = computed(() =>
+  selectedAddressCard(
+    country.value,
+    selectedEntry.value?.fields,
+    selectedEntry.value?.addressLine ?? '',
+    t,
+  ),
+)
+
+/**
+ * Строка уточнений под адресом, как в карточке Озона: квартира, подъезд,
+ * домофон, этаж. До этого в чекауте стояла одна улица, и всё, что человек
+ * ввёл ниже по форме, на экран не возвращалось.
  */
 const selectedExtras = computed(() =>
-  composeAddressExtras(selectedEntry.value?.fields, t),
+  composeAddressExtras(country.value, selectedEntry.value?.fields, t),
 )
 
 const selectedContact = computed(() => {
@@ -233,7 +256,10 @@ function onDialogDelete(id: string) {
       </div>
 
       <div class="cc3-modal-delivery__info">
-        <p class="cc3-modal-delivery__address">{{ selectedEntry.addressLine }}</p>
+        <p class="cc3-modal-delivery__address">{{ addressCard.street }}</p>
+        <p v-if="addressCard.locality" class="cc3-modal-delivery__address">
+          {{ addressCard.locality }}
+        </p>
         <p v-if="selectedExtras" class="cc3-modal-delivery__extras">{{ selectedExtras }}</p>
       </div>
 
